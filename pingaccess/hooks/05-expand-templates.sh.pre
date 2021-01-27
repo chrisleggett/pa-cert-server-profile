@@ -17,7 +17,7 @@ SSL_KEYPAIR_PKCS12=$( openssl pkcs12 -export -inkey ${_cert_path}/tls.key -in ${
 
 #ugly
 echo ${SSL_KEYPAIR_PASSWORD} >> /dev/null
-echo ${SSL_KEYPAIR} >> /dev/null
+echo ${SSL_KEYPAIR_PKCS12} >> /dev/null
 
 echo_header "SSL STUFF"
 echo_vars SSL_KEYPAIR_PASSWORD
