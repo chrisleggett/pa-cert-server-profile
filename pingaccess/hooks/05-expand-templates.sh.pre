@@ -29,5 +29,5 @@ export_container_env SSL_KEYPAIR_PASSWORD
 export_container_env SSL_KEYPAIR_PKCS12
 
 #remove openssl
-apk del openssl
+#apk del openssl
 

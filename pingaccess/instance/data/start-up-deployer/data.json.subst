@@ -220,7 +220,7 @@
             {
                 "id": 4,
                 "alias": "HELM GENERATED CERT",
-                "fileData": "${SSL_KEYPAIR}",
+                "fileData": "${SSL_KEYPAIR_PKCS12}",
                 "password": {
                     "value": "${SSL_KEYPAIR_PASSWORD}"
                 },
