@@ -3,7 +3,7 @@
 # shellcheck source=pingcommon.lib.sh
 . "${HOOKS_DIR}/pingcommon.lib.sh"
 
-_cert_path="/run/secrets/private-cert"
+_cert_path=/run/secrets/private-cert
 
 # so bad...
 apk add --no-cache openssl
@@ -13,7 +13,7 @@ SSL_KEYPAIR_PASSWORD=$( openssl rand -base64 32 )
 
 #encode and save the certificate
 # a bit ham fisted with a hammer!
-SSL_KEYPAIR=$( openssl pkcs12 -export -inkey ${_cert_path}/tls.key -in ${_cert_path}/tls.crt -password pass:${SSL_KEYPAIR_PASSWORD} | base64 | tr -d \\n )
+SSL_KEYPAIR_PKCS12=$( openssl pkcs12 -export -inkey ${_cert_path}/tls.key -in ${_cert_path}/tls.crt -password pass:${SSL_KEYPAIR_PASSWORD} | base64 | tr -d \\n )
 
 #ugly
 echo ${SSL_KEYPAIR_PASSWORD} >> /dev/null
@@ -21,12 +21,12 @@ echo ${SSL_KEYPAIR} >> /dev/null
 
 echo_header "SSL STUFF"
 echo_vars SSL_KEYPAIR_PASSWORD
-echo_vars SSL_KEYPAIR
+echo_vars SSL_KEYPAIR_PKCS12
 echo_bar
 
 #welp at least you cant see them when you access the pod/container via shell.
 export_container_env SSL_KEYPAIR_PASSWORD
-export_container_env SSL_KEYPAIR
+export_container_env SSL_KEYPAIR_PKCS12
 
 #remove openssl
 apk del openssl
